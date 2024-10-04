@@ -4,7 +4,7 @@ public class pemilihan2Percobaan206 {
     public static void main(String[] args) {
         Scanner input06 = new Scanner(System.in);
         int pilihan_menu;
-        String member;
+        String member, jenisPembayaran;
         double diskon, total_bayar, harga;
 
         System.out.println("--------------------------");
@@ -19,6 +19,8 @@ public class pemilihan2Percobaan206 {
         input06.nextLine();
         System.out.print("Apakah punya member (y/n) ? = ");
         member = input06.nextLine();
+        System.out.print("Jenis Pembayaran (QRIS/Non-QRIS) ? = ");
+        jenisPembayaran = input06.nextLine();
         System.out.println("-------------------------------------");
         if (member.equalsIgnoreCase("y")) {
             diskon = 0.10;
@@ -38,7 +40,17 @@ public class pemilihan2Percobaan206 {
             }
 
             total_bayar = harga - (harga * diskon);
-            System.out.println("Total bayar setelah diskon = " + total_bayar);
+
+            if (jenisPembayaran.equalsIgnoreCase("QRIS")) {
+                total_bayar -= 1000;
+                System.out.println("Potongan harga QRIS = " + total_bayar);
+                System.out.println("Total bayar = " + total_bayar);
+            } else if (jenisPembayaran.equalsIgnoreCase("Non-QRIS")) {
+                System.out.println("Total bayar setelah diskon = " + total_bayar);
+            } else {
+                System.out.println("Jenis pembayaran tidak valid");
+            }
+
         } else if (member.equalsIgnoreCase("n")) {
             if (pilihan_menu == 1) {
                 harga = 14000;
@@ -54,7 +66,15 @@ public class pemilihan2Percobaan206 {
                 return;
             }
 
-            System.out.println("Total bayar = " + harga);
+            if (jenisPembayaran.equalsIgnoreCase("QRIS")) {
+                harga -= 1000;
+                System.out.println("Potongan harga QRIS = " + harga);
+                System.out.println("Total bayar = " + harga);
+            } else if (jenisPembayaran.equalsIgnoreCase("Non-QRIS")) {
+                System.out.println("Total bayar = " + harga);
+            } else {
+                System.out.println("Jenis pembayaran tidak valid");
+            }
         } else {
             System.out.println("Member tidak valid");
         }
